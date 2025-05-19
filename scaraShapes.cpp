@@ -28,7 +28,31 @@ square initSquare(point pos, int sid, RGB_COLOR col) {
 
 //PART A NUMBER 3
 void drawSquare(SCARA_ROBOT* robt, square sq) {
-	LINE_DATA lineA;
+	point pts[4];
+	for (int i = 0; i < 4; i++) {
+		pts[i].x = sq.position.x + (sq.sides * cos(2*PI* i / 4 + (PI/4)));
+		pts[i].y = sq.position.y + (sq.sides * sin(2 * PI * i / 4 + (PI / 4)));
+	}
+	LINE_DATA lines[4];
+	for (int i = 0; i < 4; i++) {
+		lines[i].xA = pts[i].x;
+		lines[i].yA = pts[i].y;
+		if (i == 3) {
+			lines[i].xB = pts[0].x;
+			lines[i].yB = pts[0].y;
+		}
+		else {
+			lines[i].xB = pts[i + 1].x;
+			lines[i].yB = pts[i + 1].y;
+		}
+
+		lines[i].numPts = 20;
+		lines[i].color = sq.color;
+
+		moveScaraL(robt, lines[i]);
+	}
+	
+	/*LINE_DATA lineA;
 	lineA.xA = sq.position.x;
 	lineA.yA = sq.position.y;
 	lineA.xB = sq.position.x;
@@ -62,7 +86,7 @@ void drawSquare(SCARA_ROBOT* robt, square sq) {
 	lineD.yB = sq.position.y;
 	lineD.numPts = 20;
 	lineD.color = sq.color;
-	moveScaraL(robt, lineD);
+	moveScaraL(robt, lineD);*/
 }
 
 //PART B (2) NUMBER 6

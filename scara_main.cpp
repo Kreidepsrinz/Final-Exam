@@ -83,27 +83,22 @@ void moveScaraLTest(void) {
 
 	// Initialized Simulator from this Point
 	SCARA_ROBOT robot = initScaraState(300, 300, RIGHT_ARM_SOLUTION, { 'd', {0, 0, 255} }, 'H');
-
-	point pos_sq;
-	pos_sq.x = 200;
-	pos_sq.y = 200;
-
 	point position;
 	position.x = 250;
 	position.y = 250;
 
 	int sides = 200;
 
-	/*square box = initSquare(pos_sq, sides, black);
+	square box = initSquare(position, sides, black);
 	drawSquare(&robot, box);
 
-	hexagon six = initHexagon(position, sides, blue);
+	/*hexagon six = initHexagon(position, sides, blue);
 	drawHexagon(&robot, six);
 
 	octogon eight = initOctogon(position, sides, blue);
 	drawOctogon(&robot, eight);*/
 
-	shapesSizes(robot, position, sides);
+	//shapesSizes(robot, position, sides);
 
 	/*polygon triangle = initPolygon(position, 3, sides, blue);
 	drawPolygon(&robot, triangle);
