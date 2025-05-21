@@ -80,32 +80,21 @@ void moveScaraLTest(void) {
 	LINE_DATA lineData;
 	RGB_COLOR black = { 0, 0, 0 };
 	RGB_COLOR blue = { 0, 0, 225 };
+	RGB_COLOR red = { 225, 0, 0 };
+	RGB_COLOR green = { 0, 225, 0 };
 
 	// Initialized Simulator from this Point
 	SCARA_ROBOT robot = initScaraState(300, 300, RIGHT_ARM_SOLUTION, { 'd', {0, 0, 255} }, 'H');
-	point position;
-	position.x = 250;
-	position.y = 250;
+	int sides = 150;
+	
+	square s = initSquare({300,300}, sides, black);
+	drawSquare(&robot, s);
 
-	int sides = 200;
-
-	square box = initSquare(position, sides, black);
-	drawSquare(&robot, box);
-
-	/*hexagon six = initHexagon(position, sides, blue);
-	drawHexagon(&robot, six);
-
-	octogon eight = initOctogon(position, sides, blue);
-	drawOctogon(&robot, eight);*/
-
-	//shapesSizes(robot, position, sides);
-
-	/*polygon triangle = initPolygon(position, 3, sides, blue);
-	drawPolygon(&robot, triangle);
-
-	polygon oct = initPolygon(position, 8, sides, blue);
-	drawPolygon(&robot, oct);
-
-	polygon circle = initPolygon(position, 20, sides, blue);
-	drawPolygon(&robot, circle);*/
+	hexagon h = initHexagon({-300,300}, sides, red);
+	drawHexagon(&robot, h);
+	
+	octogon o = initOctogon({-300,-300}, sides, green);
+	drawOctogon(&robot, o);
+	
+	shapeSizes(&robot, {400,-300}, sides);
 }
